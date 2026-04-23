@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Trisha Nicole | Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a010f;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #f0eaff;
+      min-height: 100vh;
+    }
+
+    /* ===== GLOBAL LAYOUT ===== */
+    .app-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    /* ===== NAVIGATION BAR ===== */
+    .nav-bar {
+      background: #0c0712cc;
+      backdrop-filter: blur(12px);
+      border-radius: 3rem;
+      margin-bottom: 2rem;
+      padding: 0.6rem 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      border: 1px solid rgba(255, 105, 180, 0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: #f0d5ff;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      backdrop-filter: blur(4px);
+    }
+    .nav-btn i {
+      margin-right: 6px;
+      font-style: normal;
+      display: inline-block;
+    }
+    .nav-btn:hover {
+      background: #ff69b4;
+      color: #0a010f;
+      box-shadow: 0 0 8px #ff69b4;
+    }
+    .nav-btn.active {
+      background: linear-gradient(135deg, #ff69b4, #b026ff);
+      color: white;
+      box-shadow: 0 0 10px #ff69b4;
+    }
+
+    /* ===== CARD STYLES (HOME + DETAILS) ===== */
+    .page-card {
+      background: #0c0712;
+      border-radius: 2rem;
+      padding: 2rem 1.8rem;
+      border: 1px solid rgba(255, 105, 180, 0.2);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6);
+      transition: all 0.2s;
+    }
+
+    /* HOME PAGE SPECIFIC */
+    .hero-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .hero-logo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff69b4, #b026ff);
+      padding: 4px;
+      margin: 0 auto 1rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .hero-logo:hover {
+      transform: scale(1.02);
+    }
+    .hero-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      background: #1e142b;
+    }
+    .hero-name {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff99cc, #e1a0ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .hero-tagline {
+      font-size: 1rem;
+      color: #c48aff;
+      margin-top: 0.5rem;
+      border-top: 1px dashed #ff69b480;
+      display: inline-block;
+      padding-top: 0.5rem;
+    }
+    .welcome-text {
+      background: #110b18;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin: 1.8rem 0;
+      border-left: 5px solid #ff69b4;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+    .quick-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .info-chip {
+      background: #1e142b;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #ff69b450;
+    }
+    .info-chip span:first-child {
+      font-size: 1.2rem;
+    }
+    .home-cta {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .explore-btn {
+      background: linear-gradient(95deg, #ff69b4, #b026ff);
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 3rem;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+    }
+    .explore-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px #ff69b4;
+    }
+    .mini-gallery-preview {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .preview-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 1rem;
+      object-fit: cover;
+      border: 2px solid #ff69b480;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .preview-img:hover {
+      transform: scale(1.05);
+      border-color: #ff69b4;
+    }
+
+    /* DETAILS PAGE (original content style) */
+    hr {
+      margin: 0.8rem 0 1.5rem 0;
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, #ff69b4, #b026ff, #2a0f2a);
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .logo-image-container {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff69b4, #b026ff);
+      padding: 3px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .logo-text {
+      flex: 1;
+    }
+    .logo-name {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff99cc, #c45eff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      cursor: pointer;
+    }
+    .section {
+      background: #110b18;
+      border-radius: 1.25rem;
+      margin-bottom: 1rem;
+      border: 1px solid #2a1d34;
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #110b18;
+    }
+    .section-header:hover {
+      background: #1e142b;
+      border-left: 3px solid #ff69b4;
+      padding-left: calc(1.5rem - 3px);
+    }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #ffc0e8;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .arrow {
+      font-size: 1.2rem;
+      color: #c084fc;
+      transition: transform 0.25s ease;
+    }
+    .section-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      padding: 0 1.5rem;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease, padding 0.2s;
+      background: #0d0714;
+    }
+    .section.open .section-content {
+      max-height: 1000px;
+      opacity: 1;
+      padding: 0 1.5rem 1.3rem 1.5rem;
+      border-top: 1px solid #ff69b430;
+    }
+    .section.open .arrow {
+      transform: rotate(180deg);
+    }
+    .image-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-1 { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; }
+    .image-card {
+      background: #1a1225;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid #3a2a4a;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .image-card:hover {
+      transform: translateY(-4px);
+      border-color: #ff69b4;
+    }
+    .grid-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      background: #2a1d34;
+    }
+    .image-label {
+      padding: 0.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #c29fda;
+    }
+    .info-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 1px dashed #2a1d34;
+      padding-bottom: 0.4rem;
+    }
+    .info-label {
+      font-weight: 600;
+      min-width: 110px;
+      color: #ff9ad5;
+    }
+    .list-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .list-tag {
+      background: #1e142b;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+    .future-vision {
+      background: linear-gradient(135deg, #1e142b, #0d0714);
+      border-radius: 1rem;
+      padding: 1rem;
+      border-left: 4px solid #ff69b4;
+    }
+    .contact-row {
+      margin: 0.6rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .contact-label {
+      font-weight: 600;
+      min-width: 75px;
+      color: #ff9ad5;
+    }
+    .contact-value a {
+      color: #dbbaff;
+      text-decoration: none;
+      border-bottom: 1px dotted #ff69b4;
+    }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #6f5582;
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff69b4dd;
+      backdrop-filter: blur(8px);
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #0a010f;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.2s;
+      max-width: 90vw;
+      text-align: center;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    /* STREET PHOTOGRAPHY TEXT STYLES */
+    .street-photography-text p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+    .street-photography-text strong {
+      color: #ff9ad5;
+    }
+
+    /* modal overlay for logo explanation popup */
+    .logo-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.2s, opacity 0.2s;
+    }
+    .logo-modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .modal-card {
+      background: #140d1f;
+      border-radius: 2rem;
+      max-width: 400px;
+      width: 85%;
+      padding: 1.8rem;
+      border: 1px solid #ff69b4;
+      box-shadow: 0 30px 40px rgba(0,0,0,0.5);
+      text-align: center;
+      animation: gentlePop 0.2s ease;
+    }
+    @keyframes gentlePop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-card p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 1rem 0;
+      color: #ffe6f2;
+    }
+    .modal-card .logo-emoji {
+      font-size: 3rem;
+    }
+    .close-modal-btn {
+      background: linear-gradient(95deg, #ff69b4, #b026ff);
+      border: none;
+      padding: 0.5rem 1.3rem;
+      border-radius: 2rem;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      margin-top: 0.8rem;
+      font-family: inherit;
+    }
+
+    @media (max-width: 550px) {
+      .page-card { padding: 1.5rem; }
+      .hero-name { font-size: 2rem; }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .profile-header { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="app-wrapper">
+  <!-- Navigation Tabs -->
+  <div class="nav-bar">
+    <button class="nav-btn" data-page="home">🏠 HOME</button>
+    <button class="nav-btn" data-page="details">🌸 MY WORLD</button>
+  </div>
+
+  <!-- HOME PAGE CONTENT -->
+  <div id="homePage" class="page-card" style="display: block;">
+    <div class="hero-section">
+      <div class="hero-logo" id="homeLogoClick">
+        <img src="niclogo.jpg.jpeg" alt="Nicole" onerror="this.src='https://placehold.co/200x200/2a1d34/ffc0e8?text=✨'">
+      </div>
+      <div class="hero-name">Trisha Nicole</div>
+      
+    </div>
+    <div class="welcome-text">
+      🌻 Welcome to my digital sanctuary — a space where memories, dreams, and little joys come alive. I'm Trisha Nicole Zagala, an 18-year-old education student with a heart for photography, meaningful connections, and growth. Explore my journey, my passions, and the moments that shape me.
+    </div>
+    <div class="quick-info">
+      <div class="info-chip"><span>📅</span> 18 years old</div>
+      <div class="info-chip"><span>🎓</span> Elementary Education</div>
+      <div class="info-chip"><span>📸</span> Street Photography</div>
+      <div class="info-chip"><span>❤️</span> Patrickyael</div>
+    </div>
+    <div class="mini-gallery-preview">
+      <img class="preview-img" src="daylight.jpeg" alt="preview1" onerror="this.src='https://placehold.co/80x80/2a1d34/ffc0e8?text=🌄'">
+      <img class="preview-img" src="street.jpeg" alt="preview2" onerror="this.src='https://placehold.co/80x80/2a1d34/ffc0e8?text=📷'">
+      <img class="preview-img" src="thankyou1.jpeg" alt="preview3" onerror="this.src='https://placehold.co/80x80/2a1d34/ffc0e8?text=💕'">
+    </div>
+    <div class="home-cta">
+      <button class="explore-btn" id="exploreBtn">✨ explore my universe ✨</button>
+    </div>
+    <footer style="margin-top: 2rem;">Nicole's corner — every moment matters</footer>
+  </div>
+
+  <!-- DETAILS PAGE -->
+  <div id="detailsPage" class="page-card" style="display: none;">
+    <div class="profile-header">
+      <div class="logo-image-container" id="logoImageClick">
+        <img class="logo-img" src="niclogo.jpg.jpeg" alt="Nicole Logo" id="logoImage">
+      </div>
+      <div class="logo-text">
+        <div class="logo-name" id="logoNameBtn"> Nicole's Website</div>
+        <div class="tagline" style="font-size: 0.7rem; color:#b289c2;">~ details & stories ~</div>
+      </div>
+    </div>
+    <hr>
+
+    <!-- ABOUT SECTION -->
+    <div class="section" id="aboutSection">
+      <div class="section-header"><div class="section-title"><span>📷</span> ABOUT ME</div><div class="arrow">▼</div></div>
+      <div class="section-content">
+        <div class="info-grid">
+          <div class="info-row"><span class="info-label">Full Name:</span><span>Trisha Nicole T. Zagala</span></div>
+          <div class="info-row"><span class="info-label">Age:</span><span>18 years old</span></div>
+          <div class="info-row"><span class="info-label">Date of Birth:</span><span>June 25, 2007</span></div>
+          <div class="info-row"><span class="info-label">Boyfriend's Name:</span><span>Patrickyael Florencio</span></div>
+          <div class="info-row"><span class="info-label">Nationality:</span><span>Filipino</span></div>
+          <div class="info-row"><span class="info-label">Religion:</span><span>Roman Catholic</span></div>
+        </div>
+        <div class="sub-section" style="margin-top:1rem"><div class="sub-title" style="color:#ffb3e6; font-weight:600;">🎀 Hobbies</div><div class="list-items"><span class="list-tag">Cooking</span><span class="list-tag">Cleaning</span><span class="list-tag">Walking</span><span class="list-tag">Online Games</span><span class="list-tag">Watching</span><span class="list-tag">Singing</span></div></div>
+        <div class="sub-section"><div class="sub-title">🍛 Favorite Food</div><div class="list-items"><span class="list-tag">Chicken Curry</span><span class="list-tag">Shawarma</span><span class="list-tag">Adobo</span><span class="list-tag">Sinigang</span></div></div>
+        <div class="sub-section"><div class="sub-title">🎵 Favorite Songs</div><div class="list-items"><span class="list-tag">Yesterday once more</span><span class="list-tag">Everything I Own</span><span class="list-tag">Risk it all</span></div></div>
+        <div class="small-note" style="margin-top:0.8rem">🌸 "capturing little joys — that's my street photography vibe"</div>
+      </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <div class="section" id="contactSection">
+      <div class="section-header"><div class="section-title"><span>📞</span> CONTACT INFORMATION</div><div class="arrow">▼</div></div>
+      <div class="section-content">
+        <div class="contact-row"><span class="contact-label">Email:</span><span class="contact-value"><a href="#" id="emailLink">Trishanicolezagala5@gmail.com</a></span></div>
+        <div class="contact-row"><span class="contact-label">Instagram:</span><span class="contact-value"><a href="#" id="igLink">@nicolezagala</a></span></div>
+        <div class="contact-row"><span class="contact-label">Facebook:</span><span class="contact-value"><a href="#" id="facebookLink">Trisha Nicole Zagala</a></span></div>
+      </div>
+    </div>
+
+    <!-- GOAL SECTION -->
+    <div class="section" id="goalSection">
+      <div class="section-header"><div class="section-title"><span>🎯</span> MY GOAL</div><div class="arrow">▼</div></div>
+      <div class="section-content">
+        <div><strong>📚 Academic Goal:</strong> finish Elementary Education, become licensed teacher.</div>
+        <div style="margin-top:0.6rem"><strong>💰 Financial Goal:</strong> financial stability, help family.</div>
+        <div style="margin-top:0.6rem"><strong>💖 Life Goal:</strong> balanced life, positive impact on students.</div>
+      </div>
+    </div>
+
+    <!-- FUTURE ME -->
+    <div class="section" id="futureSection">
+      <div class="section-header"><div class="section-title"><span>🌱</span> MY FUTURE ME</div><div class="arrow">▼</div></div>
+      <div class="section-content">
+        <div class="future-vision">I see myself as a graduate of Elementary Education and a licensed professional teacher, confident and passionate in teaching young learners. I will have a stable job, manage finances wisely, support my family, and live a happy, balanced life while inspiring my future students.</div>
+      </div>
+    </div>
+
+    <!-- ENVIRONMENT -->
+    <div class="section" id="envSection">
+      <div class="section-header"><div class="section-title"><span>🔍</span> ENVIRONMENT</div><div class="arrow">▼</div></div>
+      <div class="section-content">
+        <div class="image-grid grid-2" id="envGrid">
+          <div class="image-card"><img class="grid-img" src="daylight.jpeg" alt="Environment 1" onerror="this.src='https://placehold.co/400x400/2a1d34/ffc0e8?text=🌿+GOD+DAMN'"><div class="image-label">BEST</div></div>
+          <div class="image-card"><img class="grid-img" src="wholesome.jpeg" alt="Environment 2" onerror="this.src='https://placehold.co/400x400/2a1d34/ffc0e8?text=🌆+DARK'"><div class="image-label">DARK</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STREET PHOTOGRAPHY (UPDATED WITH YOUR TEXT) -->
+    <div class="section" id="streetSection">
+      <div class="section-header">
+        <div class="section-title"><span>📸</span> STREET PHOTOGRAPHY</div>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="section-content">
+        <div class="street-photography-text">
+
+          <p>Tired San Mateo Municipal College students walk slowly under the intense heat, wearing matching uniforms. A simple yet relatable moment of resilience and dedication.
+</p>
+
+          <p><strong>1. What story does your photo tell?</strong><br>
+          Tired SMMC students walking under the heat, wearing matching academic uniforms—a relatable moment of student life, not dramatic but real.</p>
+
+          <p><strong>2. Why did you choose this subject?</strong><br>
+          Because I’ve experienced the same thing many times. It’s personal and familiar.</p>
+
+          <p><strong>3. What elements make your photo effective?</strong><br>
+          The harsh noon lighting makes you feel the heat. The candid composition—woman walking toward camera, group behind—feels natural. The timing captures a quiet, unposed moment. The emotion is subtle: tired endurance with a touch of humor.</p>
+
+          <p><strong>4. What challenges did you encounter?</strong><br>
+          It was hard because it wasn’t scripted. I worried people might get angry if they noticed me taking their picture without permission.</p>
+
+          <p><strong>5. How can you improve next time?</strong><br>
+          Use a better quality camera for sharper details. Get closer or zoom in for clearer expressions. Shoot in burst mode to catch the most natural frame.</p>
+
+        
+        </div>
+        <div class="image-grid grid-1" style="margin-top:1rem">
+          <div class="image-card">
+            <img class="grid-img" src="street.jpeg" alt="Street Photo" onerror="this.src='https://placehold.co/400x400/2a1d34/ffc0e8?text=📸+HEAT+THE+BEAT'">
+            <div class="image-label">HEAT THE BEAT — SMMC students walking under the midday sun</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THANK YOU -->
+    <div class="section" id="thankyouSection">
+      <div class="section-header"><div class="section-title"><span>❤️</span> THANK YOU</div><div class="arrow">▼</div></div>
+      <div class="section-content">
+        <div>Thank you for visiting my little space on the web. Every view means the world to me. Stay kind, keep creating.</div>
+        <div class="image-grid grid-3">
+          <div class="image-card"><img class="grid-img" src="thankyou1.jpeg" alt="Thank you 1" onerror="this.src='https://placehold.co/400x400/2a1d34/ffc0e8?text=💖+FRIENDS'"><div class="image-label">FRIENDS</div></div>
+          <div class="image-card"><img class="grid-img" src="thankyou2.jpeg" alt="Thank you 2" onerror="this.src='https://placehold.co/400x400/2a1d34/ffc0e8?text=🌸+FRIENDS'"><div class="image-label">FRIENDS</div></div>
+          <div class="image-card"><img class="grid-img" src="thankyou4.jpeg" alt="Thank you 3" onerror="this.src='https://placehold.co/400x400/2a1d34/ffc0e8?text=✨+MAHAL'"><div class="image-label">MAHAL SA BUHAY</div></div>
+        </div>
+      </div>
+    </div>
+    <footer>Nicole's Website — heart & soul</footer>
+  </div>
+</div>
+<div id="clickToast" class="toast-msg">✨ ready ✨</div>
+
+<!-- Modal overlay for logo explanation -->
+<div id="logoModal" class="logo-modal">
+  <div class="modal-card">
+    <div class="logo-emoji">🍳✨</div>
+    <p><strong>Nicole Bistro's Logo Meaning</strong><br>
+    Nicole Bistro's logo is like a warm hug, inviting you to come in and dig into some delicious silogs. The name "Nicole" probably adds a personal touch, like a friend's place where you'd feel comfy. Silogs are a big part of Filipino breakfast culture, and the logo likely captures that homey, comfort food vibe.
+    </p>
+    <button class="close-modal-btn">Got it 💖</button>
+  </div>
+</div>
+
+<script>
+  // toast system
+  const toastEl = document.getElementById('clickToast');
+  let toastTimeout;
+  function showToast(msg) {
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastEl.textContent = msg;
+    toastEl.style.opacity = '1';
+    toastTimeout = setTimeout(() => { toastEl.style.opacity = '0'; }, 1300);
+  }
+
+  // --- LOGO EXPLANATION MODAL ---
+  const modal = document.getElementById('logoModal');
+  function showLogoExplanation() {
+    modal.classList.add('active');
+  }
+  function closeModal() {
+    modal.classList.remove('active');
+  }
+  // attach close button listener inside modal
+  const closeModalBtn = document.querySelector('.close-modal-btn');
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+  // optional: click outside modal closes it
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // PAGE ROUTING: Home vs Details
+  const homePage = document.getElementById('homePage');
+  const detailsPage = document.getElementById('detailsPage');
+  const navBtns = document.querySelectorAll('.nav-btn');
+
+  function setActivePage(pageId) {
+    if (pageId === 'home') {
+      homePage.style.display = 'block';
+      detailsPage.style.display = 'none';
+      document.title = "Trisha Nicole | Home";
+    } else {
+      homePage.style.display = 'none';
+      detailsPage.style.display = 'block';
+      document.title = "Trisha Nicole | My World";
+    }
+    navBtns.forEach(btn => {
+      if (btn.getAttribute('data-page') === pageId) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+  }
+
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const page = btn.getAttribute('data-page');
+      setActivePage(page);
+      showToast(page === 'home' ? '🏠 welcome home, nicole' : '🌸 exploring details page');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // "Explore" button on homepage redirects to details
+  const exploreBtn = document.getElementById('exploreBtn');
+  if (exploreBtn) {
+    exploreBtn.addEventListener('click', () => {
+      setActivePage('details');
+      showToast('✨ let’s dive into Nicole’s world ✨');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Home logo click: now shows the brand new logo explanation modal
+  const homeLogo = document.getElementById('homeLogoClick');
+  if (homeLogo) homeLogo.addEventListener('click', () => showLogoExplanation());
+
+  // === Restore all original interactive features (toggle sections, copy, links) ===
+  function setupSectionToggle(sectionId, openMsg, closeMsg) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    const header = section.querySelector('.section-header');
+    if (!header) return;
+    header.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const wasOpen = section.classList.contains('open');
+      section.classList.toggle('open');
+      showToast(wasOpen ? closeMsg : openMsg);
+    });
+  }
+  setupSectionToggle('aboutSection', '📖 ABOUT ME opened', '📖 ABOUT ME closed');
+  setupSectionToggle('contactSection', '📞 CONTACT opened', '🔒 CONTACT closed');
+  setupSectionToggle('goalSection', '🎯 MY GOAL revealed', '🎯 GOAL closed');
+  setupSectionToggle('futureSection', '🌱 FUTURE vision opened', '🌱 FUTURE closed');
+  setupSectionToggle('envSection', '🔍 ENVIRONMENT gallery opened', '🔍 ENVIRONMENT closed');
+  setupSectionToggle('streetSection', '📸 STREET PHOTOGRAPHY opened', '📸 STREET closed');
+  setupSectionToggle('thankyouSection', '❤️ THANK YOU & images opened', '❤️ THANK YOU closed');
+
+  // logo click on details page (also shows the full explanation now)
+  const logoNameBtn = document.getElementById('logoNameBtn');
+  if (logoNameBtn) logoNameBtn.addEventListener('click', () => { showLogoExplanation(); });
+  const logoImgContainer = document.getElementById('logoImageClick');
+  if (logoImgContainer) logoImgContainer.addEventListener('click', () => showLogoExplanation());
+  
+  // Additional extra: The logo name in details page also opens explanation (instead of scroll top)
+  // But we keep it consistent: show logo explanation. I'll override previous scroll behavior.
+  // Remove old unwanted toast from previous code; now logo name shows the nice bistro explanation.
+  // Also make the "Nicole's Website" text click show explanation & not interfere with scroll top, but we'll keep explanatory vibe.
+  
+  // contact interactions
+  const emailLink = document.getElementById('emailLink');
+  if (emailLink) emailLink.addEventListener('click', (e) => { e.preventDefault(); navigator.clipboard?.writeText('Trishanicolezagala5@gmail.com'); showToast('📧 email copied'); });
+  const igLink = document.getElementById('igLink');
+  if (igLink) igLink.addEventListener('click', (e) => { e.preventDefault(); showToast('📸 opening instagram'); window.open('https://www.instagram.com/nicolezagala', '_blank'); });
+  const fbLink = document.getElementById('facebookLink');
+  if (fbLink) fbLink.addEventListener('click', (e) => { e.preventDefault(); showToast('📘 opening facebook'); window.open('https://www.facebook.com/', '_blank'); });
+
+  // small image preview click feedback (on home mini gallery)
+  const previewImgs = document.querySelectorAll('.preview-img');
+  previewImgs.forEach(img => {
+    img.addEventListener('click', () => showToast('🖼️ glimpse of Nicole’s gallery — explore the "MY WORLD" tab'));
+  });
+  // initial default: home page active, details collapsed sections preloaded but not open
+  setActivePage('home');
+  // ensure all sections start closed (already by CSS)
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('open'));
+  
+  // Additional edge: make sure modal doesn't cause any missing styles, add docs
+  // provide a nice addition: Also subtle if the images from preview etc.
+</script>
+</body>
+</html>
